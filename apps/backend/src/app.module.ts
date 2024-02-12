@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
 import { ThrottlerModule } from '@nestjs/throttler';
+import { ScheduleModule } from '@nestjs/schedule';
+
 import { AuthModule } from './auth/auth.module';
 import { AppCacheModule } from './cache/cache.module';
 import { AppConfigModule, AppConfigService } from '@reduced.to/config';
@@ -13,12 +15,14 @@ import { UsersModule } from './core/users/users.module';
 import { LinksService } from './core/links/links.service';
 import { LinksModule } from './core/links/links.module';
 import { ReportsModule } from './core/reports/reports.module';
+import { CronService } from './cron/cron.service';
 
 @Module({
   imports: [
     AppConfigModule,
     AppLoggerModule,
     AppCacheModule,
+    ScheduleModule.forRoot(),
     ThrottlerModule.forRootAsync({
       inject: [AppConfigService],
       useFactory: (config: AppConfigService) => ({
@@ -40,6 +44,7 @@ import { ReportsModule } from './core/reports/reports.module';
       useClass: CustomThrottlerGuard,
     },
     LinksService,
+    CronService,
   ],
 })
 export class AppModule {}

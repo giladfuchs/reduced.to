@@ -73,6 +73,7 @@
     "@nestjs/jwt": "^10.2.0",
     "@nestjs/passport": "^10.0.3",
     "@nestjs/platform-express": "^10.3.0",
+    "@nestjs/schedule": "^4.0.1",
     "@nestjs/throttler": "^4.2.1",
     "@novu/node": "^0.22.0",
     "@origranot/ts-logger": "^1.12.0",
